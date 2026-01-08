@@ -6,13 +6,17 @@ class CustomListview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric( vertical: 4.0),
-          child: NoteItem(),
-        );
-      },
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: NoteItem(),
+          );
+        },
+      ),
     );
   }
 }

@@ -26,12 +26,12 @@ class NoteItem extends StatelessWidget {
             title: Text('Note Title', style: TextStyle(color: Colors.black ,fontWeight: FontWeight.w500,fontSize: 26),),
             subtitle: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Text('Note Content', style: TextStyle(color: Colors.black54,fontSize: 20),),
+              child: Text('Note Content', style: TextStyle(color: Colors.black54,fontSize: 18),),
             ),
             trailing: Icon(Icons.delete, color: Colors.black,size: 28,),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 16),
             child: Text("6th Dec 2025", style: TextStyle(color: Colors.black45, fontSize: 16),),
           ),
         ],
