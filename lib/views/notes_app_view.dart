@@ -8,14 +8,20 @@ class NotesView extends StatelessWidget {
 static const String id = 'notesView' ;
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).viewInsets.bottom);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPrimaryColor,
         onPressed: () {
           showModalBottomSheet(
+            isScrollControlled: true,
             context: context,
             builder: (context) {
-              return AddNoteBottomSheet();
+              return Padding(
+                padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddNoteBottomSheet(),
+              );
             },
           );
         },

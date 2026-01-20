@@ -25,14 +25,14 @@ class NotesApp extends StatelessWidget {
         EditNoteView.id: (context) => const EditNoteView(),
         GridVieww.id: (context) => const GridVieww(),
       },
-      initialRoute: NotesView.id,
+      initialRoute: GridVieww.id,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: const Color.fromARGB(255, 46, 46, 48),
       ),
-      home: const NotesView(),
+      home: const GridVieww(),
     );
   }
 }
