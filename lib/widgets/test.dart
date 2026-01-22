@@ -23,7 +23,7 @@ class GridVieww extends StatelessWidget {
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(.8),
+                  color: Colors.grey.withAlpha((0.8 * 255).toInt()),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(Icons.add, size: 28, color: Colors.blue),
