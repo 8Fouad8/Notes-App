@@ -20,7 +20,7 @@ class AddNoteBottomSheet extends StatelessWidget {
               ),
             );
           }
-          if (state is AddNoteFailure) {
+          if (state is AddNoteSuccess) {
             Navigator.pop(context);
           }
         },

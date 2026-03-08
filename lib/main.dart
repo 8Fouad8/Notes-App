@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -9,13 +10,17 @@ import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/views/notes_app_view.dart';
 import 'package:notes_app/widgets/test.dart';
 
-void main() async
-{
+void main() async {
   await Hive.initFlutter();
-  Bloc.observer = SimpleBlocObserver(); 
+  Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNotesBox);
-  runApp(DevicePreview(builder: (context) => const NotesApp()));
+
+  runApp(
+    kReleaseMode
+        ? const NotesApp()
+        : DevicePreview(enabled: true, builder: (context) => const NotesApp()),
+  );
 }
 
 class NotesApp extends StatelessWidget {
