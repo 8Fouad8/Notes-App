@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:notes_app/widgets/custom_icon.dart';
 
 class CustomAppbar extends StatelessWidget {
@@ -6,8 +7,10 @@ class CustomAppbar extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
-    this.backButton = false,
+    this.backButton = false, this.onTap,
+
   });
+ final void Function()? onTap;
   final String title;
   final IconData icon;
   final bool backButton;
@@ -25,7 +28,9 @@ class CustomAppbar extends StatelessWidget {
         SizedBox(width: 10),
         Text(title, style: TextStyle(fontSize: 28)),
         Spacer(),
-        CustomIcon(icon: icon),
+        GestureDetector(
+          onTap: onTap,
+          child: CustomIcon(icon: icon)),
       ],
     );
   }

@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
-final NoteModel note ; 
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () {
-      Navigator.pushNamed(context, EditNoteView.id);
-    },
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditNoteView(note: note)),
+        );
+      },
       child: Container(
-        padding: const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 16.0, ),
+        padding: const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 16.0),
         decoration: BoxDecoration(
-          color:  Color(note.color),
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
@@ -24,20 +30,39 @@ final NoteModel note ;
             ),
           ],
         ),
-             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: Text(note.title, style: TextStyle(color: Colors.black ,fontWeight: FontWeight.w500,fontSize: 26),),
+              title: Text(
+                note.title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 26,
+                ),
+              ),
               subtitle: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(note.subtitle, style: TextStyle(color: Colors.black54,fontSize: 18),),
+                child: Text(
+                  note.subtitle,
+                  style: TextStyle(color: Colors.black54, fontSize: 18),
+                ),
               ),
-              trailing: Icon(Icons.delete, color: Colors.black,size: 28,),
+              trailing: IconButton(
+                onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                },
+                icon: Icon(Icons.delete, color: Colors.black, size: 28),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: Text(note.date, style: TextStyle(color: Colors.black45, fontSize: 16),),
+              child: Text(
+                note.date,
+                style: TextStyle(color: Colors.black45, fontSize: 16),
+              ),
             ),
           ],
         ),
